@@ -243,6 +243,18 @@ function prepare_system() {
 echo -e "Prepare the system to install ${GREEN}$COIN_NAME${NC} master node."
 apt-get update >/dev/null 2>&1
 apt-get install -y wget curl ufw binutils net-tools >/dev/null 2>&1
+
+## this is temporary
+sudo apt install -y software-properties-common >/dev/null 2>&1
+echo -e "${GREEN}Adding bitcoin PPA repository"
+sudo apt-add-repository -y ppa:bitcoin/bitcoin >/dev/null 2>&1
+echo -e "Installing required packages, it may take some time to finish.${NC}"
+sudo apt-get update >/dev/null 2>&1
+sudo apt-get install -y software-properties-common \
+build-essential libtool autoconf libssl-dev libboost-dev libboost-chrono-dev libboost-filesystem-dev libboost-program-options-dev \
+libboost-system-dev libboost-test-dev libboost-thread-dev sudo automake git wget curl libdb4.8-dev bsdmainutils libdb4.8++-dev \
+libminiupnpc-dev libgmp3-dev ufw pkg-config libevent-dev  libdb5.3++ libzmq5 >/dev/null 2>&1
+
 }
 
 function important_information() {
